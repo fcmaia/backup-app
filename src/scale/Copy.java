@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -65,8 +66,13 @@ public class Copy {
 		for ( String src : srcs ) {
 			if (src == null) continue;
 			
-			currentSourcePath = new File(src).getAbsolutePath();
-			copy( src );
+			try {
+				String s = new String(src.getBytes( "CP850" ), "UTF-8");
+				currentSourcePath = new File(s).getAbsolutePath();
+				copy( src );
+			} catch ( UnsupportedEncodingException e ) {
+				e.printStackTrace();
+			}
 		}
 	}
 
