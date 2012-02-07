@@ -67,7 +67,7 @@ public class Copy {
 			if (src == null) continue;
 			
 			try {
-				String s = new String(src.getBytes( "CP850" ), "UTF-8");
+				String s = new String(src.getBytes( "UTF-8" ));
 				currentSourcePath = new File(s).getAbsolutePath();
 				copy( src );
 			} catch ( UnsupportedEncodingException e ) {
